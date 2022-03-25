@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.action_clear -> { //при нажатии на кнопку clear очищаем текстовое поле и адаптер
-                //  Log.d(TAG, "action_clear")
+                Log.d(TAG, "action_clear")
                 requestInput.text?.clear()
                 pods.clear()
                 podsAdapter.notifyDataSetChanged()
@@ -209,9 +209,11 @@ class MainActivity : AppCompatActivity() {
                 showSnackbar(getString(R.string.error_tts_is_not_ready))
             } else {
                 isTtsReady = true
+                Log.d(TAG, "TextToSpeech SUCCESS")
             }
         }
         textToSpeech.language = Locale.US
+
     }
 
     fun showVoiceInputDialog() {
@@ -238,6 +240,7 @@ class MainActivity : AppCompatActivity() {
             data?.getStringArrayExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0)?.let { question ->
                 requestInput.setText(question)
                 askWolfram(question)
+                Log.d(TAG, "send_question")
             }
         }
     }
